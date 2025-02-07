@@ -4,7 +4,7 @@ package com.genetico.model;
 public class Individuo {
     private final Cromossomo cromosso;
 
-    public Individuo(){
+    public Individuo() {
         this.cromosso = new Cromossomo();
     }
 

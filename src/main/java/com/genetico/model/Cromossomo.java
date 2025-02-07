@@ -1,38 +1,40 @@
 package com.genetico.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Cromossomo {
     public static final int QTDE_MAXIMA_GENES = 10;
+    public static final int GENE_ORIGEM = 0;
 
-    private final int[] genes;
+    private final char[] genes;
 
     public Cromossomo() {
-        genes = new int[QTDE_MAXIMA_GENES];
+        genes = new char[QTDE_MAXIMA_GENES];
         inicializarGenes();
     }
 
-    public void imprimirGenes() {
-        System.out.println(String.join(" | ", Arrays.toString(genes)));
+    public char[] getGenes() {
+        return this.genes;
+    }
+
+    public String imprimirGenes() {
+        StringJoiner stringJoiner = new StringJoiner(" | ");
+
+        for (char gene : genes) stringJoiner.add(String.valueOf(gene));
+
+        return stringJoiner.toString();
     }
 
     private void inicializarGenes() {
-        List<Integer> cidades = new ArrayList<>();
+        List<String> cidades = new ArrayList<>();
 
-        for (int i = 1; i < genes.length; i++) {
-            cidades.add(i);
-        }
+        for (int i = 1; i < genes.length; i++) cidades.add(String.valueOf(i));
 
         Collections.shuffle(cidades);
 
-        genes[0] = 0;
+        genes[GENE_ORIGEM] = '0';
 
-        for (int i = 1; i < genes.length; i++) {
-            genes[i] = cidades.get(i - 1);
-        }
+        for (int i = 1; i < genes.length; i++) genes[i] = cidades.get(i - 1).charAt(0);
     }
 
 }
