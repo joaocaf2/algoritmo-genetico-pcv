@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class IndividuoTest {
 
     @Test
-    @DisplayName(value = "genes devem ser inicializados com o tamanho correto definido na constante")
+    @DisplayName(value = "Genes devem ser inicializados com o tamanho correto definido na constante")
     public void genesDevemSerInicializadosComOTamanhoCorreto() {
         var individuo = new Individuo();
 
@@ -20,7 +20,7 @@ public class IndividuoTest {
     }
 
     @Test
-    @DisplayName(value = "genes devem ser formatados corretamente com caracter delimitador: |")
+    @DisplayName(value = "Genes devem ser formatados corretamente com caracter delimitador: |")
     public void genesDevemSerFormatadosCorretamenteAoImprimir() {
         var individuo = new Individuo();
         var genes = individuo.getCromosso().getGenes();
