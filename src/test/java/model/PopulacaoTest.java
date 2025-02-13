@@ -1,6 +1,5 @@
 package model;
 
-import com.genetico.model.Cromossomo;
 import com.genetico.model.Populacao;
 import org.junit.jupiter.api.Test;
 
