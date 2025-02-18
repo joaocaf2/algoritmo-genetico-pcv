@@ -1,13 +1,18 @@
 package model;
 
 import com.genetico.model.Cromossomo;
+import com.genetico.model.Individuo;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.StringJoiner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CromossomoTest {
 
     @Test
+    @DisplayName("Deve calcular o fitness corretamente")
     public void deveCalcularOFitnessCorretamente() throws Exception {
         var cromossomo = new Cromossomo();
 
@@ -24,6 +29,27 @@ public class CromossomoTest {
         int fitness = (int) calcularFitness.invoke(cromossomo);
 
         assertEquals(80, fitness);
+    }
+
+    @Test
+    @DisplayName(value = "Genes devem ser inicializados com o tamanho correto definido na constante")
+    public void genesDevemSerInicializadosComOTamanhoCorreto() {
+        var individuo = new Individuo();
+
+        assertEquals(individuo.getCromosso().getGenes().length, Cromossomo.QTDE_MAXIMA_GENES);
+    }
+
+    @Test
+    @DisplayName(value = "Genes devem ser formatados corretamente com caracter delimitador: |")
+    public void genesDevemSerFormatadosCorretamenteAoImprimir() {
+        var individuo = new Individuo();
+        var genes = individuo.getCromosso().getGenes();
+
+        StringJoiner genesFormatadosComBarra = new StringJoiner(" | ");
+
+        for (char gene : genes) genesFormatadosComBarra.add(String.valueOf(gene));
+
+        assertEquals(genesFormatadosComBarra.toString(), individuo.getCromosso().imprimirGenes());
     }
 
 }
