@@ -35,19 +35,61 @@ public class Cromossomo {
     }
 
     private int[][] inicializarDistancias() {
-        Random rand = new Random();
+        int[][] distancias = new int[Cromossomo.QTDE_MAXIMA_GENES][Cromossomo.QTDE_MAXIMA_GENES];
 
-        var distancias = new int[QTDE_MAXIMA_GENES][QTDE_MAXIMA_GENES];
+        distancias[0][1] = 10;
+        distancias[0][2] = 20;
+        distancias[0][3] = 30;
+        distancias[0][4] = 40;
+        distancias[0][5] = 50;
+        distancias[0][6] = 60;
+        distancias[0][7] = 70;
+        distancias[0][8] = 80;
+        distancias[0][9] = 90;
 
-        for (int casaAnterior = 0; casaAnterior < QTDE_MAXIMA_GENES; casaAnterior++) {
+        distancias[1][2] = 15;
+        distancias[1][3] = 25;
+        distancias[1][4] = 35;
+        distancias[1][5] = 45;
+        distancias[1][6] = 55;
+        distancias[1][7] = 65;
+        distancias[1][8] = 75;
+        distancias[1][9] = 85;
 
-            for (int casadaFrente = casaAnterior + 1; casadaFrente < QTDE_MAXIMA_GENES; casadaFrente++) {
-                int distanciaAleatoria = rand.nextInt(100) + 1;
+        distancias[2][3] = 10;
+        distancias[2][4] = 20;
+        distancias[2][5] = 30;
+        distancias[2][6] = 40;
+        distancias[2][7] = 50;
+        distancias[2][8] = 60;
+        distancias[2][9] = 70;
 
-                distancias[casaAnterior][casadaFrente] = distanciaAleatoria;
-                distancias[casadaFrente][casaAnterior] = distanciaAleatoria;
-            }
-        }
+        distancias[3][4] = 5;
+        distancias[3][5] = 15;
+        distancias[3][6] = 25;
+        distancias[3][7] = 35;
+        distancias[3][8] = 45;
+        distancias[3][9] = 55;
+
+        distancias[4][5] = 10;
+        distancias[4][6] = 20;
+        distancias[4][7] = 30;
+        distancias[4][8] = 40;
+        distancias[4][9] = 50;
+
+        distancias[5][6] = 5;
+        distancias[5][7] = 15;
+        distancias[5][8] = 25;
+        distancias[5][9] = 35;
+
+        distancias[6][7] = 10;
+        distancias[6][8] = 20;
+        distancias[6][9] = 30;
+
+        distancias[7][8] = 5;
+        distancias[7][9] = 15;
+
+        distancias[8][9] = 10;
 
         return distancias;
     }
@@ -58,6 +100,7 @@ public class Cromossomo {
         for (int i = 0; i < genes.length - 1; i++) {
             int cidadeAtual = Character.getNumericValue(genes[i]);
             int cidadeProxima = Character.getNumericValue(genes[i + 1]);
+
             fitness += distancias[cidadeAtual][cidadeProxima];
         }
 
@@ -68,10 +111,6 @@ public class Cromossomo {
         return this.genes;
     }
 
-    public int getFitness() {
-        return fitness;
-    }
-
     public String imprimirGenes() {
         StringJoiner stringJoiner = new StringJoiner(" | ");
 
@@ -79,5 +118,4 @@ public class Cromossomo {
 
         return stringJoiner.toString();
     }
-
 }
