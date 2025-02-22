@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Populacao {
     List<Cromossomo> cromossomos;
-    public static final int TAMANHO_POPULACAO = 50;
+    public static final int TAMANHO_POPULACAO = 30;
 
-    public Populacao(){
+    public Populacao() {
         this.cromossomos = new ArrayList<>();
         iniciarPopulacao();
     }
 
-    private void iniciarPopulacao(){
+    private void iniciarPopulacao() {
         for (int i = 0; i < TAMANHO_POPULACAO; i++) {
             Cromossomo cromossomo = new Cromossomo();
 
@@ -20,11 +20,8 @@ public class Populacao {
         }
     }
 
-    public void imprimirPopulacao(){
-        for(Cromossomo cromossomo: cromossomos){
-            System.out.println(cromossomo.imprimirGenes());
-        }
-
+    public void imprimirPopulacao() {
+        for (Cromossomo cromossomo : cromossomos) System.out.println(cromossomo.imprimirGenes());
     }
 
     public List<Cromossomo> getCromossomos() {
