@@ -45,11 +45,12 @@ public class CromossomoTest {
         var individuo = new Individuo();
         var genes = individuo.getCromosso().getGenes();
 
-        StringJoiner genesFormatadosComBarra = new StringJoiner(" | ");
+        StringJoiner cromossomoFormatado = new StringJoiner(" | ");
 
-        for (char gene : genes) genesFormatadosComBarra.add(String.valueOf(gene));
+        for (char gene : genes) cromossomoFormatado.add(String.valueOf(gene));
+        cromossomoFormatado.add(String.valueOf(individuo.getCromosso().getFitness()));
 
-        assertEquals(genesFormatadosComBarra.toString(), individuo.getCromosso().imprimirGenes());
+        assertEquals(cromossomoFormatado.toString(), individuo.getCromosso().imprimirGenes());
     }
 
 }

@@ -107,15 +107,20 @@ public class Cromossomo {
         return fitness;
     }
 
-    public char[] getGenes() {
-        return this.genes;
-    }
-
     public String imprimirGenes() {
         StringJoiner stringJoiner = new StringJoiner(" | ");
 
         for (char gene : genes) stringJoiner.add(String.valueOf(gene));
+        stringJoiner.add(String.valueOf(getFitness()));
 
         return stringJoiner.toString();
+    }
+
+    public char[] getGenes() {
+        return this.genes;
+    }
+
+    public int getFitness() {
+        return fitness;
     }
 }
