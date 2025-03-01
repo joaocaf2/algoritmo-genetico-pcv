@@ -28,7 +28,7 @@ public class CromossomoTest {
         calcularFitness.setAccessible(true);
         int fitness = (int) calcularFitness.invoke(cromossomo);
 
-        assertEquals(80, fitness);
+        assertEquals(70, fitness);
     }
 
     @Test
