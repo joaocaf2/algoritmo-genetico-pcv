@@ -152,17 +152,17 @@ public class Cromossomo {
         var fitness = 0;
 
         for (int i = 0; i < genes.length - 1; i++) {
-            int cidadeAtual = Character.getNumericValue(genes[i]);
-            int cidadeProxima = Character.getNumericValue(genes[i + 1]);
+            var cidadeOrigem = Character.getNumericValue(genes[i]);
+            var cidadeDestino = Character.getNumericValue(genes[i + 1]);
 
-            fitness += distancias[cidadeAtual][cidadeProxima];
+            fitness += distancias[cidadeOrigem][cidadeDestino];
         }
 
         return fitness;
     }
 
     public String imprimirGenes() {
-        StringJoiner stringJoiner = new StringJoiner(" | ");
+        var stringJoiner = new StringJoiner(" | ");
 
         for (char gene : genes) stringJoiner.add(String.valueOf(gene));
         stringJoiner.add(String.valueOf(getFitness()));
