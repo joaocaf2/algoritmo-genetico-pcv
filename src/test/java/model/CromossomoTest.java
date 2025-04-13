@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CromossomoTest {
 
     @Test
-    @DisplayName("Deve calcular o fitness corretamente")
-    public void deveCalcularOFitnessCorretamente() throws Exception {
+    @DisplayName("Valor do fitness  dve ser calculado corretamente")
+    public void valorDoFitnessDeveSeCalculadoCorretamente() throws Exception {
         var cromossomo = new Cromossomo();
 
         char[] genesFixos = new char[Cromossomo.QTDE_MAXIMA_GENES];
@@ -34,9 +34,7 @@ public class CromossomoTest {
     @Test
     @DisplayName(value = "Genes devem ser inicializados com o tamanho correto definido na constante")
     public void genesDevemSerInicializadosComOTamanhoCorreto() {
-        var individuo = new Individuo();
-
-        assertEquals(individuo.getCromosso().getGenes().length, Cromossomo.QTDE_MAXIMA_GENES);
+        assertEquals(new Individuo().getCromosso().getGenes().length, Cromossomo.QTDE_MAXIMA_GENES);
     }
 
     @Test
@@ -45,7 +43,7 @@ public class CromossomoTest {
         var individuo = new Individuo();
         var genes = individuo.getCromosso().getGenes();
 
-        StringJoiner cromossomoFormatado = new StringJoiner(" | ");
+        var cromossomoFormatado = new StringJoiner(" | ");
 
         for (char gene : genes) cromossomoFormatado.add(String.valueOf(gene));
         cromossomoFormatado.add(String.valueOf(individuo.getCromosso().getFitness()));

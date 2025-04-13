@@ -8,7 +8,6 @@ public class Cromossomo {
 
     private final char[] genes;
     private final int[][] distancias;
-
     private int fitness;
 
     public Cromossomo() {
