@@ -12,23 +12,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CromossomoTest {
 
     @Test
-    @DisplayName("Valor do fitness  dve ser calculado corretamente")
-    public void valorDoFitnessDeveSeCalculadoCorretamente() throws Exception {
-        var cromossomo = new Cromossomo();
+    @DisplayName("Valor do fitness deve ser calculado corretamente")
+    public void valorDoFitnessDeveSeCalculadoCorretamente() {
+        var genesFixos = inicializarValoresGenesFixos();
+        var cromossomo = new Cromossomo(genesFixos);
 
+        assertEquals(70, cromossomo.getFitness());
+    }
+
+    private char[] inicializarValoresGenesFixos() {
         char[] genesFixos = new char[Cromossomo.QTDE_MAXIMA_GENES];
 
-        for (int i = 0; i < 10; i++) genesFixos[i] = (char) ('0' + i);
+        genesFixos[0] = '0';
+        genesFixos[1] = '1';
+        genesFixos[2] = '2';
+        genesFixos[3] = '3';
+        genesFixos[4] = '4';
+        genesFixos[5] = '5';
+        genesFixos[6] = '6';
+        genesFixos[7] = '7';
+        genesFixos[8] = '8';
+        genesFixos[9] = '9';
 
-        var genes = Cromossomo.class.getDeclaredField("genes");
-        genes.setAccessible(true);
-        genes.set(cromossomo, genesFixos);
-
-        var calcularFitness = Cromossomo.class.getDeclaredMethod("calcularFitness");
-        calcularFitness.setAccessible(true);
-        int fitness = (int) calcularFitness.invoke(cromossomo);
-
-        assertEquals(70, fitness);
+        return genesFixos;
     }
 
     @Test

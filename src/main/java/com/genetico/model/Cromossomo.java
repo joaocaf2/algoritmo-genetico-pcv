@@ -11,10 +11,22 @@ public class Cromossomo {
     private int fitness;
 
     public Cromossomo() {
-        genes = inicializarGenes();
+        this.genes = inicializarGenes();
+        this.distancias = inicializarDistancias();
+        this.fitness = 0;
+        this.fitness = calcularFitness();
+    }
+
+    public Cromossomo(char[] genes) {
+        this.genes = genes;
+
+        if (genes.length > QTDE_MAXIMA_GENES) {
+            throw new IllegalArgumentException("A quantidade de genes não deve ultrapassar a capacidade máxima de: " + QTDE_MAXIMA_GENES);
+        }
+
         distancias = inicializarDistancias();
-        fitness = 0;
-        fitness = calcularFitness();
+        this.fitness = 0;
+        this.fitness = calcularFitness();
     }
 
     private char[] inicializarGenes() {
