@@ -6,7 +6,7 @@ public class Cromossomo {
     public static final int QTDE_MAXIMA_GENES = 10;
     public static final int GENE_ORIGEM = 0;
 
-    private final char[] genes;
+    private final int[] genes;
     private final int[][] distancias;
     private int fitness;
 
@@ -17,7 +17,7 @@ public class Cromossomo {
         this.fitness = calcularFitness();
     }
 
-    public Cromossomo(char[] genes) {
+    public Cromossomo(int[] genes) {
         this.genes = genes;
 
         if (genes.length > QTDE_MAXIMA_GENES) {
@@ -29,18 +29,18 @@ public class Cromossomo {
         this.fitness = calcularFitness();
     }
 
-    private char[] inicializarGenes() {
-        var genes = new char[QTDE_MAXIMA_GENES];
+    private int[] inicializarGenes() {
+        var genes = new int[QTDE_MAXIMA_GENES];
 
-        List<String> cidades = new ArrayList<>();
+        List<Integer> cidades = new ArrayList<>();
 
-        for (int i = 1; i < genes.length; i++) cidades.add(String.valueOf(i));
+        for (int i = 1; i < genes.length; i++) cidades.add(i);
 
         Collections.shuffle(cidades);
 
-        genes[GENE_ORIGEM] = '0';
+        genes[GENE_ORIGEM] = 0;
 
-        for (int i = 1; i < genes.length; i++) genes[i] = cidades.get(i - 1).charAt(0);
+        for (int i = 1; i < genes.length; i++) genes[i] = cidades.get(i - 1);
 
         return genes;
     }
@@ -162,9 +162,9 @@ public class Cromossomo {
     private int calcularFitness() {
         var fitness = 0;
 
-        for (int i = 0; i < genes.length - 1; i++) {
-            var cidadeOrigem = Character.getNumericValue(genes[i]);
-            var cidadeDestino = Character.getNumericValue(genes[i + 1]);
+        for (int i = 0; i < this.genes.length - 1; i++) {
+            var cidadeOrigem = this.genes[i];
+            var cidadeDestino = this.genes[i + 1];
 
             fitness += distancias[cidadeOrigem][cidadeDestino];
         }
@@ -175,13 +175,13 @@ public class Cromossomo {
     public String imprimirGenes() {
         var stringJoiner = new StringJoiner(" | ");
 
-        for (char gene : genes) stringJoiner.add(String.valueOf(gene));
+        for (int gene : genes) stringJoiner.add(String.valueOf(gene));
         stringJoiner.add(String.valueOf(getFitness()));
 
         return stringJoiner.toString();
     }
 
-    public char[] getGenes() {
+    public int[] getGenes() {
         return this.genes;
     }
 

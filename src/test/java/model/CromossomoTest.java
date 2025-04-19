@@ -20,19 +20,19 @@ public class CromossomoTest {
         assertEquals(70, cromossomo.getFitness());
     }
 
-    private char[] inicializarValoresGenesFixos() {
-        char[] genesFixos = new char[Cromossomo.QTDE_MAXIMA_GENES];
+    private int[] inicializarValoresGenesFixos() {
+        var genesFixos = new int[Cromossomo.QTDE_MAXIMA_GENES];
 
-        genesFixos[0] = '0';
-        genesFixos[1] = '1';
-        genesFixos[2] = '2';
-        genesFixos[3] = '3';
-        genesFixos[4] = '4';
-        genesFixos[5] = '5';
-        genesFixos[6] = '6';
-        genesFixos[7] = '7';
-        genesFixos[8] = '8';
-        genesFixos[9] = '9';
+        genesFixos[0] = 0;
+        genesFixos[1] = 1;
+        genesFixos[2] = 2;
+        genesFixos[3] = 3;
+        genesFixos[4] = 4;
+        genesFixos[5] = 5;
+        genesFixos[6] = 6;
+        genesFixos[7] = 7;
+        genesFixos[8] = 8;
+        genesFixos[9] = 9;
 
         return genesFixos;
     }
@@ -51,7 +51,7 @@ public class CromossomoTest {
 
         var cromossomoFormatado = new StringJoiner(" | ");
 
-        for (char gene : genes) cromossomoFormatado.add(String.valueOf(gene));
+        for (int gene : genes) cromossomoFormatado.add(String.valueOf(gene));
         cromossomoFormatado.add(String.valueOf(individuo.getCromosso().getFitness()));
 
         assertEquals(cromossomoFormatado.toString(), individuo.getCromosso().imprimirGenes());
