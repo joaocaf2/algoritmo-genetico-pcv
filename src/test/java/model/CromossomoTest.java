@@ -39,7 +39,7 @@ public class CromossomoTest {
     @Test
     @DisplayName(value = "Genes devem ser inicializados com o tamanho correto definido na constante")
     public void genesDevemSerInicializadosComOTamanhoCorreto() {
-        assertEquals(new Individuo().getCromosso().getGenes().length, Cromossomo.QTDE_MAXIMA_GENES);
+        assertEquals(Cromossomo.QTDE_MAXIMA_GENES, new Individuo().getCromosso().getGenes().length);
     }
 
     @Test
