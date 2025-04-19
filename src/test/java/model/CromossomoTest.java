@@ -14,8 +14,7 @@ public class CromossomoTest {
     @Test
     @DisplayName("Valor do fitness deve ser calculado corretamente")
     public void valorDoFitnessDeveSeCalculadoCorretamente() {
-        var genesFixos = inicializarValoresGenesFixos();
-        var cromossomo = new Cromossomo(genesFixos);
+        var cromossomo = new Cromossomo(inicializarValoresGenesFixos());
 
         assertEquals(70, cromossomo.getFitness());
     }
