@@ -22,7 +22,7 @@ public class CromossomoTest {
     private int[] inicializarValoresGenesFixos() {
         var genesFixos = new int[Cromossomo.QTDE_MAXIMA_GENES];
 
-        for(int indice = 0; indice < genesFixos.length;indice++){
+        for (int indice = 0; indice < genesFixos.length; indice++) {
             genesFixos[indice] = indice;
         }
 
