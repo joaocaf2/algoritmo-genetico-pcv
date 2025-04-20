@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.StringJoiner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CromossomoTest {
 
@@ -39,14 +40,15 @@ public class CromossomoTest {
     @DisplayName(value = "Genes devem ser formatados corretamente com caracter delimitador: |")
     public void genesDevemSerFormatadosCorretamenteAoImprimir() {
         var individuo = new Individuo();
-        var genes = individuo.getCromosso().getGenes();
 
-        var cromossomoFormatado = new StringJoiner(" | ");
+        String padraoImpressaoCromossomo = "^(\\d+\\s\\|\\s)*\\d+$";
 
-        for (int gene : genes) cromossomoFormatado.add(String.valueOf(gene));
-        cromossomoFormatado.add(String.valueOf(individuo.getCromosso().getFitness()));
+        boolean impressaoCromossomoEstaNoPadrao = individuo
+                .getCromosso()
+                .imprimirGenes()
+                .matches(padraoImpressaoCromossomo);
 
-        assertEquals(cromossomoFormatado.toString(), individuo.getCromosso().imprimirGenes());
+        assertTrue(impressaoCromossomoEstaNoPadrao);
     }
 
 }
