@@ -41,7 +41,6 @@ public class Cromossomo {
 
         Collections.shuffle(cidades);
 
-
         for (int indice = 1; indice < genes.length; indice++) {
             genes[indice] = cidades.get(indice - 1);
         }
