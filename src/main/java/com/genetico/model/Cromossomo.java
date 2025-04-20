@@ -42,7 +42,9 @@ public class Cromossomo {
         Collections.shuffle(cidades);
 
 
-        for (int i = 1; i < genes.length; i++) genes[i] = cidades.get(i - 1);
+        for (int indice = 1; indice < genes.length; indice++) {
+            genes[indice] = cidades.get(indice - 1);
+        }
 
         return genes;
     }
