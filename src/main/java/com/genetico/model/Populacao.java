@@ -40,6 +40,6 @@ public class Populacao {
     }
 
     public List<Cromossomo> getCromossomos() {
-        return cromossomos;
+        return this.cromossomos;
     }
 }
