@@ -30,6 +30,7 @@ public class Cromossomo {
 
     private int[] inicializarGenes() {
         var genes = new int[QTDE_MAXIMA_GENES];
+        genes[0] = GENE_ORIGEM;
 
         for (int indice = 1; indice < genes.length; indice++) {
             genes[indice] = indice;
