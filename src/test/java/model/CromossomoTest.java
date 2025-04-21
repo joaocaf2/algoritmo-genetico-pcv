@@ -5,34 +5,28 @@ import com.genetico.model.Individuo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.StringJoiner;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CromossomoTest {
 
     @Test
     @DisplayName("Valor do fitness deve ser calculado corretamente")
     public void valorDoFitnessDeveSeCalculadoCorretamente() {
-        var genesFixos = inicializarValoresGenesFixos();
-        var cromossomo = new Cromossomo(genesFixos);
+        var cromossomo = new Cromossomo(inicializarValoresGenesFixos());
 
         assertEquals(70, cromossomo.getFitness());
     }
 
-    private char[] inicializarValoresGenesFixos() {
-        char[] genesFixos = new char[Cromossomo.QTDE_MAXIMA_GENES];
+    private int[] inicializarValoresGenesFixos() {
+        var genesFixos = new int[Cromossomo.QTDE_MAXIMA_GENES];
 
-        genesFixos[0] = '0';
-        genesFixos[1] = '1';
-        genesFixos[2] = '2';
-        genesFixos[3] = '3';
-        genesFixos[4] = '4';
-        genesFixos[5] = '5';
-        genesFixos[6] = '6';
-        genesFixos[7] = '7';
-        genesFixos[8] = '8';
-        genesFixos[9] = '9';
+        for (int indice = 0; indice < genesFixos.length; indice++) {
+            genesFixos[indice] = indice;
+        }
 
         return genesFixos;
     }
@@ -40,21 +34,44 @@ public class CromossomoTest {
     @Test
     @DisplayName(value = "Genes devem ser inicializados com o tamanho correto definido na constante")
     public void genesDevemSerInicializadosComOTamanhoCorreto() {
-        assertEquals(new Individuo().getCromosso().getGenes().length, Cromossomo.QTDE_MAXIMA_GENES);
+        assertEquals(Cromossomo.QTDE_MAXIMA_GENES, new Individuo().getCromosso().getGenes().length);
     }
 
     @Test
     @DisplayName(value = "Genes devem ser formatados corretamente com caracter delimitador: |")
     public void genesDevemSerFormatadosCorretamenteAoImprimir() {
         var individuo = new Individuo();
-        var genes = individuo.getCromosso().getGenes();
 
-        var cromossomoFormatado = new StringJoiner(" | ");
+        String padraoImpressaoCromossomo = "^(\\d+\\s\\|\\s)*\\d+$";
 
-        for (char gene : genes) cromossomoFormatado.add(String.valueOf(gene));
-        cromossomoFormatado.add(String.valueOf(individuo.getCromosso().getFitness()));
+        boolean impressaoCromossomoEstaNoPadrao = individuo
+                .getCromosso()
+                .imprimirGenes()
+                .matches(padraoImpressaoCromossomo);
 
-        assertEquals(cromossomoFormatado.toString(), individuo.getCromosso().imprimirGenes());
+        assertTrue(impressaoCromossomoEstaNoPadrao);
+    }
+
+    @Test
+    @DisplayName(value = "Não deve existir genes repetidos em um cromossomo")
+    public void naoDeveExistirGenesRepetidosNoCromossomo() {
+        var cromossomo = new Cromossomo();
+
+        Set<Integer> genesSemRepeticao = new HashSet<>();
+
+        for (int gene : cromossomo.getGenes()) {
+            boolean foiAdicionado = genesSemRepeticao.add(gene);
+
+            assertTrue(foiAdicionado);
+        }
+    }
+
+    @Test
+    @DisplayName(value = "O gene de origem do cromossomo deve sempre ser igual a 0")
+    public void oGeneOrigemDoCromossomoDeveSerSempreZero() {
+        var cromossomo = new Cromossomo();
+
+       assertEquals(0,cromossomo.getGenes()[0]);
     }
 
 }
