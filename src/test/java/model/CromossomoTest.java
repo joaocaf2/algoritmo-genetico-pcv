@@ -58,10 +58,10 @@ public class CromossomoTest {
     public void naoDeveExistirGenesRepetidosNoCromossomo() {
         var cromossomo = new Cromossomo();
 
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> genesSemRepeticao = new HashSet<>();
 
         for (int gene : cromossomo.getGenes()) {
-            boolean foiAdicionado = set.add(gene);
+            boolean foiAdicionado = genesSemRepeticao.add(gene);
 
             assertTrue(foiAdicionado);
         }

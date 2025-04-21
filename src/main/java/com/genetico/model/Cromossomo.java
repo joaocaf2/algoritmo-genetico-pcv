@@ -31,18 +31,20 @@ public class Cromossomo {
 
     private int[] inicializarGenes() {
         var genes = new int[QTDE_MAXIMA_GENES];
-        genes[GENE_ORIGEM] = 0;
-
-        List<Integer> cidades = new ArrayList<>();
 
         for (int indice = 1; indice < genes.length; indice++) {
-            cidades.add(indice);
+            genes[indice] = indice;
         }
 
-        Collections.shuffle(cidades);
+        var random = new Random();
 
         for (int indice = 1; indice < genes.length; indice++) {
-            genes[indice] = cidades.get(indice - 1);
+            int indiceAleatorio = random.nextInt(indice) + 1;
+
+            int valorGeneAtual = genes[indice];
+
+            genes[indice] = genes[indiceAleatorio];
+            genes[indiceAleatorio] = valorGeneAtual;
         }
 
         return genes;
