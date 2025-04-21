@@ -5,6 +5,7 @@ import com.genetico.model.Individuo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -64,6 +65,14 @@ public class CromossomoTest {
 
             assertTrue(foiAdicionado);
         }
+    }
+
+    @Test
+    @DisplayName(value = "O gene de origem do cromossomo deve sempre ser igual a 0")
+    public void oGeneOrigemDoCromossomoDeveSerSempreZero() {
+        var cromossomo = new Cromossomo();
+
+       assertEquals(0,cromossomo.getGenes()[0]);
     }
 
 }
