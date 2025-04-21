@@ -5,6 +5,9 @@ import com.genetico.model.Individuo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -47,6 +50,20 @@ public class CromossomoTest {
                 .matches(padraoImpressaoCromossomo);
 
         assertTrue(impressaoCromossomoEstaNoPadrao);
+    }
+
+    @Test
+    @DisplayName(value = "Não deve existir genes repetidos em um cromossomo")
+    public void naoDeveExistirGenesRepetidosNoCromossomo() {
+        var cromossomo = new Cromossomo();
+
+        Set<Integer> set = new HashSet<>();
+
+        for (int gene : cromossomo.getGenes()) {
+            boolean foiAdicionado = set.add(gene);
+
+            assertTrue(foiAdicionado);
+        }
     }
 
 }
