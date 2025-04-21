@@ -5,7 +5,6 @@ import java.util.*;
 public class Cromossomo {
     public static final int QTDE_MAXIMA_GENES = 10;
     public static final int GENE_ORIGEM = 0;
-
     private final int[] genes;
     private final int[][] distancias;
     private int fitness;
