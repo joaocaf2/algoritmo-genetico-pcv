@@ -30,9 +30,11 @@ public class Populacao {
     }
 
     private List<Cromossomo> avaliarPopulacao(List<Cromossomo> cromossomos) {
-        cromossomos.sort(Comparator.comparingInt(Cromossomo::getFitness));
+        var cromossomoOrdenado = new ArrayList<>(cromossomos);
 
-        return new ArrayList<>(cromossomos);
+        cromossomoOrdenado.sort(Comparator.comparingInt(Cromossomo::getFitness));
+
+        return cromossomoOrdenado;
     }
 
     public void imprimirPopulacao() {
