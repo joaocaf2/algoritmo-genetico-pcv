@@ -9,7 +9,6 @@ public class Populacao {
     public static final int TAMANHO_POPULACAO = 30;
 
     public Populacao() {
-        this.cromossomos = new ArrayList<>();
         this.cromossomos = avaliarPopulacao(iniciarPopulacaoAleatoriamente());
     }
 
