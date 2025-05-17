@@ -177,6 +177,47 @@ public class Cromossomo {
         return fitness;
     }
 
+    public List<Cromossomo> realizarCrossoverPmx(Cromossomo pai2, Random random) {
+        int[] pontosDeCorte = gerarPontosDeCorte(random);
+
+        System.out.println("Pai 1 e pai 2:");
+        System.out.println(imprimirGenes());
+        System.out.println(pai2.imprimirGenes());
+
+        var genesPai1 = getGenes();
+        var genesPai2 = pai2.getGenes();
+
+        var genesFilho1 = new int[QTDE_MAXIMA_GENES];
+        var genesFilho2 = new int[QTDE_MAXIMA_GENES];
+
+        for (int i = pontosDeCorte[0] + 1; i <= pontosDeCorte[1]; i++) {
+            genesFilho1[i] = genesPai2[i];
+            genesFilho2[i] = genesPai1[i];
+        }
+
+        System.out.println();
+
+        System.out.println("Ponto de corte 1: " + pontosDeCorte[0]);
+        System.out.println("Ponto de corte 2: " + pontosDeCorte[1]);
+
+        return List.of(new Cromossomo(genesFilho1), new Cromossomo(genesFilho2));
+    }
+
+    private int[] gerarPontosDeCorte(Random random) {
+        int pontoCorte1, pontoCorte2;
+
+        do {
+            pontoCorte1 = random.nextInt(QTDE_MAXIMA_GENES);
+            pontoCorte2 = random.nextInt(QTDE_MAXIMA_GENES);
+        } while (pontosDeCorteSaoInvalidos(pontoCorte1, pontoCorte2));
+
+        return new int[]{pontoCorte1, pontoCorte2};
+    }
+
+    private boolean pontosDeCorteSaoInvalidos(int pontoCorte1, int pontoCorte2) {
+        return pontoCorte1 == pontoCorte2 || pontoCorte1 > pontoCorte2;
+    }
+
     public String imprimirGenes() {
         var stringJoiner = new StringJoiner(" | ");
 
