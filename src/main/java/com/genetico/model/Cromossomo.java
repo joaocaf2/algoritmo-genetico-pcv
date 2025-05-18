@@ -187,12 +187,19 @@ public class Cromossomo {
         var genesPai1 = getGenes();
         var genesPai2 = pai2.getGenes();
 
-        var genesFilho1 = new int[QTDE_MAXIMA_GENES];
-        var genesFilho2 = new int[QTDE_MAXIMA_GENES];
+        var genesFilho1 = new int[genesPai1.length];
+        var genesFilho2 = new int[genesPai2.length];
 
-        for (int i = pontosDeCorte[0] + 1; i <= pontosDeCorte[1]; i++) {
-            genesFilho1[i] = genesPai2[i];
-            genesFilho2[i] = genesPai1[i];
+        trocarGenesEntreOsPontosDeCorte(pontosDeCorte, genesFilho1, genesPai2, genesFilho2, genesPai1);
+
+        for (int indice = 0; indice <= pontosDeCorte[0]; indice++) {
+            genesFilho1[indice] = genesPai1[indice];
+            genesFilho2[indice] = genesPai2[indice];
+        }
+
+        for (int indice = pontosDeCorte[1] + 1; indice < genesPai1.length; indice++) {
+            genesFilho1[indice] = genesPai1[indice];
+            genesFilho2[indice] = genesPai2[indice];
         }
 
         System.out.println();
@@ -201,6 +208,13 @@ public class Cromossomo {
         System.out.println("Ponto de corte 2: " + pontosDeCorte[1]);
 
         return List.of(new Cromossomo(genesFilho1), new Cromossomo(genesFilho2));
+    }
+
+    private void trocarGenesEntreOsPontosDeCorte(int[] pontosDeCorte, int[] genesFilho1, int[] genesPai2, int[] genesFilho2, int[] genesPai1) {
+        for (int i = pontosDeCorte[0] + 1; i <= pontosDeCorte[1]; i++) {
+            genesFilho1[i] = genesPai2[i];
+            genesFilho2[i] = genesPai1[i];
+        }
     }
 
     private int[] gerarPontosDeCorte(Random random) {

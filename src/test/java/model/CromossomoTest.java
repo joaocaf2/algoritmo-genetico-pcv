@@ -98,7 +98,11 @@ public class CromossomoTest {
 
         doCallRealMethod().when(pai1).realizarCrossoverPmx(pai2, random);
 
-        var filhos = pai1.realizarCrossoverPmx(pai2,random);
+        var filhos = pai1.realizarCrossoverPmx(pai2, random);
+
+        System.out.println("filho 1 e filho 2");
+        System.out.println(filhos.getFirst().imprimirGenes());
+        System.out.println(filhos.getLast().imprimirGenes());
 
         assertEquals(genesEsperadosFilho1, filhos.getFirst().imprimirGenes());
         assertEquals(genesEsperadosFilho2, filhos.getLast().imprimirGenes());
@@ -110,15 +114,15 @@ public class CromossomoTest {
                         new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
                         new int[]{0, 4, 3, 2, 1, 7, 6, 5, 8, 9},
                         new int[]{3, 5},
-                        "0 | 0 | 0 | 0 | 1 | 7 | 0 | 0 | 0 | 0 | 140",
-                        "0 | 0 | 0 | 0 | 4 | 5 | 0 | 0 | 0 | 0 | 115"
+                        "0 | 1 | 2 | 3 | 1 | 7 | 6 | 7 | 8 | 9 | 125",
+                        "0 | 4 | 3 | 2 | 4 | 5 | 6 | 5 | 8 | 9 | 135"
                 ),
                 Arguments.of(
                         new int[]{0, 1, 2, 3, 4, 5, 6, 7},
                         new int[]{0, 3, 2, 1, 4, 5, 6, 7},
                         new int[]{0, 3},
-                        "0 | 3 | 2 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 110",
-                        "0 | 1 | 2 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 80"
+                        "0 | 3 | 2 | 1 | 4 | 5 | 6 | 7 | 105",
+                        "0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 55"
                 )
         );
     }
