@@ -88,8 +88,7 @@ public class CromossomoTest {
             int[] genesFixos2,
             int[] pontosCorteFixos,
             String genesEsperadosFilho1,
-            String genesEsperadosFilho2
-    ) {
+            String genesEsperadosFilho2) {
         var pai1 = spy(new Cromossomo(genesFixos1));
         var pai2 = new Cromossomo(genesFixos2);
         var random = mock(Random.class);
